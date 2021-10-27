@@ -29,8 +29,7 @@ y = terminal_enc
 X = list(zip(gate_enc, arriveOrDepart_enc, airline_enc))
 
 X_train, X_test, y_train, y_test = train_test_split(X, y,
-                                                    test_size=0.20,
-                                                    random_state=22)
+                                                    test_size=0.20)
 
 # print("X_train", X_train)
 # print("X_test", X_test)
@@ -41,8 +40,8 @@ rfc = RandomForestClassifier()
 
 rfc.fit(X_train, y_train)
 
-print(rfc.score(X_train, y_train))
-print(rfc.score(X_test, y_test))
+print("Training Set Performance:", rfc.score(X_train, y_train)*100)
+print("Test Set Performance", rfc.score(X_test, y_test)*100)
 df["Terminal Prediction Numerical"] = rfc.predict(X)
 
 # df["Terminal Prediction Numerical"].to_csv("prediction.csv", encoding='utf-8', index=False)
